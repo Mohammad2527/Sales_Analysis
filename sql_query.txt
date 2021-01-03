@@ -1,0 +1,27 @@
+1)Show all customer records:
+SELECT * FROM sales.customers;
+
+2)Show total number of customer:
+SELECT count(*) FROM sales.customers;
+
+3)Show transaction from market where market_code =Mark001:
+SELECT * FROM sales.transactions where market_code="Mark001";
+
+04)Show distinct product codes that are sold is Mark001:
+SELECT distinct product_code FROM sales.transactions where market_code="Mark001";
+
+05)SHow transactions where currency is USD:
+SELECT * FROM sales.transactions where currency="USD";
+
+
+06)Show transaction in 2020 join by date table:(Inner join)
+SELECT sales.transactions.*, sales.date.* FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=date.date where date.year=2020;
+
+07)Show total revenue in 2020:
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where date.year=2020;
+
+08)Sow total revenue in 2020 in market Mark001:
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where date.year=2020 and sales.transactions.market_code="Mark001";
+
+09)Show total revenue in January,2020:
+SELECT SUM(sales.transactions.sales_amount) FROM sales.transactions INNER JOIN sales.date ON sales.transactions.order_date=sales.date.date where date.year=2020 and date.month_name="January" and (sales.transactions.currency="INR\r" or sales.transactions.currency="USD\r");
